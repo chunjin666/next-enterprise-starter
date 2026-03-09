@@ -1,0 +1,293 @@
+@import 'tailwindcss';
+
+@plugin 'tailwindcss-animate';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Border radius */
+  --radius-default: 0.5rem;
+}
+
+/* Dark mode color overrides using CSS variables */
+:root {
+  color-scheme: light;
+  --radius: 0.625rem;
+
+  /* 基础颜色变量 - 与原 @theme 中的 HSL 颜色对应的 OKLCH 值 */
+  --background: oklch(1 0 0);                    /* hsl(0 0% 100%) */
+  --foreground: oklch(0.094 0 0);                 /* hsl(222.2 84% 4.9%) */
+  --card: oklch(1 0 0);                           /* hsl(0 0% 100%) */
+  --card-foreground: oklch(0.094 0 0);            /* hsl(222.2 84% 4.9%) */
+  --popover: oklch(1 0 0);                        /* hsl(0 0% 100%) */
+  --popover-foreground: oklch(0.094 0 0);         /* hsl(222.2 84% 4.9%) */
+  --primary: oklch(0.55 0.13 158.44);             /* 新的主色 - 更亮的蓝绿色 */
+  --primary-foreground: oklch(1 0 0);             /* hsl(0 0% 100%) */
+  --secondary: oklch(0.956 0.008 210);            /* hsl(210 40% 96%) */
+  --secondary-foreground: oklch(0.094 0 0);       /* hsl(222.2 84% 4.9%) */
+  --muted: oklch(0.956 0.008 210);               /* hsl(210 40% 96%) */
+  --muted-foreground: oklch(0.469 0.013 215.4);   /* hsl(215.4 16.3% 46.9%) */
+  --accent: oklch(0.956 0.008 210);               /* hsl(210 40% 96%) */
+  --accent-foreground: oklch(0.094 0 0);          /* hsl(222.2 84% 4.9%) */
+  --destructive: oklch(0.577 0.245 27.325);      /* hsl(0 84.2% 60.2%) */
+  --destructive-foreground: oklch(0.988 0.006 210); /* hsl(210 40% 98%) */
+  --border: oklch(0.896 0.013 220);               /* hsl(220 13% 91%) */
+  --input: oklch(0.956 0.008 210);                /* hsl(220 13% 96%) */
+  --ring: oklch(0.55 0.13 158.44);                 /* 与 primary 保持一致 */
+
+  /* 扩展变量 */
+  --border-subtle: oklch(0.956 0.008 220);        /* hsl(220 13% 96%) */
+  --divider: oklch(0.980 0.006 220);              /* hsl(220 13% 98%) */
+  --surface: oklch(1 0 0);                        /* hsl(0 0% 100%) */
+  --surface-elevated: oklch(0.995 0.003 0);       /* hsl(0 0% 99%) */
+  --surface-hover: oklch(0.988 0.006 220);        /* hsl(220 13% 99%) */
+
+  /* Chart 颜色 */
+  --chart-1: oklch(0.646 0.222 41.116);           /* hsl(12 76% 61%) */
+  --chart-2: oklch(0.465 0.129 173);              /* hsl(173 58% 39%) */
+  --chart-3: oklch(0.282 0.058 197);              /* hsl(197 37% 24%) */
+  --chart-4: oklch(0.659 0.196 43);               /* hsl(43 74% 66%) */
+  --chart-5: oklch(0.699 0.206 27);               /* hsl(27 87% 67%) */
+
+  /* 项目特定颜色 */
+  --success: oklch(0.55 0.13 158.44);              /* 与 primary 保持一致 */
+  --success-foreground: oklch(1 0 0);             /* hsl(0 0% 100%) */
+  --warning: oklch(0.668 0.179 38);               /* hsl(38 92% 50%) */
+  --warning-foreground: oklch(1 0 0);             /* hsl(0 0% 100%) */
+
+  /* Sidebar 颜色 */
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  color-scheme: dark;
+
+  /* 基础颜色变量 - 深色模式 OKLCH 值 */
+  --background: oklch(0.039 0 0);                 /* hsl(0 0% 3.9%) */
+  --foreground: oklch(0.98 0 0);                  /* hsl(0 0% 98%) */
+  --card: oklch(0.039 0 0);                       /* hsl(0 0% 3.9%) */
+  --card-foreground: oklch(0.98 0 0);             /* hsl(0 0% 98%) */
+  --popover: oklch(0.039 0 0);                    /* hsl(0 0% 3.9%) */
+  --popover-foreground: oklch(0.98 0 0);          /* hsl(0 0% 98%) */
+  --primary: oklch(0.55 0.13 158.44);             /* 保持与浅色模式相同的蓝绿色，确保主题一致性 */
+  --primary-foreground: oklch(0.02 0 0);          /* hsl(0 0% 98%) */
+  --secondary: oklch(0.149 0 0);                  /* hsl(0 0% 14.9%) */
+  --secondary-foreground: oklch(0.98 0 0);        /* hsl(0 0% 98%) */
+  --muted: oklch(0.149 0 0);                      /* hsl(0 0% 14.9%) */
+  --muted-foreground: oklch(0.639 0 0);           /* hsl(0 0% 63.9%) */
+  --accent: oklch(0.149 0 0);                     /* hsl(0 0% 14.9%) */
+  --accent-foreground: oklch(0.98 0 0);           /* hsl(0 0% 98%) */
+  --destructive: oklch(0.568 0.227 27.325);       /* hsl(0 62.8% 30.6%) */
+  --destructive-foreground: oklch(0.98 0 0);      /* hsl(0 0% 98%) */
+  --border: oklch(0.25 0 0);                      /* hsl(0 0% 25%) */
+  --input: oklch(0.20 0 0);                       /* hsl(0 0% 20%) */
+  --ring: oklch(0.55 0.13 158.44);                 /* 与 primary 保持一致 */
+
+  /* 扩展变量 - 深色模式 */
+  --border-subtle: oklch(0.15 0 0);               /* hsl(0 0% 15%) */
+  --divider: oklch(0.10 0 0);                     /* hsl(0 0% 10%) */
+  --surface: oklch(0.039 0 0);                    /* hsl(0 0% 3.9%) */
+  --surface-elevated: oklch(0.06 0 0);            /* hsl(0 0% 6%) */
+  --surface-hover: oklch(0.08 0 0);               /* hsl(0 0% 8%) */
+
+  /* Chart 颜色 - 深色模式 */
+  --chart-1: oklch(0.65 0.25 220);                 /* hsl(220 70% 50%) */
+  --chart-2: oklch(0.54 0.21 160);                 /* hsl(160 60% 45%) */
+  --chart-3: oklch(0.62 0.24 30);                  /* hsl(30 80% 55%) */
+  --chart-4: oklch(0.71 0.22 280);                 /* hsl(280 65% 60%) */
+  --chart-5: oklch(0.68 0.23 340);                 /* hsl(340 75% 55%) */
+
+  /* 项目特定颜色 - 深色模式 */
+  --success: oklch(0.55 0.13 158.44);              /* 保持与 primary 一致的蓝绿色 */
+  --success-foreground: oklch(0.02 0 0);          /* hsl(0 0% 98%) */
+  --warning: oklch(0.668 0.179 38);                /* hsl(38 92% 50%) */
+  --warning-foreground: oklch(0.02 0 0);          /* hsl(0 0% 98%) */
+
+  /* Sidebar 颜色 - 深色模式 */
+  --sidebar: oklch(0.039 0 0);
+  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(0.55 0.13 158.44);
+  --sidebar-primary-foreground: oklch(0.02 0 0);
+  --sidebar-accent: oklch(0.149 0 0);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(0.25 0 0);
+  --sidebar-ring: oklch(0.55 0.13 158.44);
+}
+
+/* Custom card shadows and visual hierarchy */
+@layer components {
+  .card-soft-shadow {
+    box-shadow:
+      0 1px 3px 0 rgb(0 0 0 / 0.03),
+      0 1px 2px -1px rgb(0 0 0 / 0.03);
+  }
+
+  .card-medium-shadow {
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.04),
+      0 2px 4px -2px rgb(0 0 0 / 0.04);
+  }
+
+  .card-hover-shadow {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .card-hover-shadow:hover {
+    box-shadow:
+      0 8px 25px -5px rgb(0 0 0 / 0.06),
+      0 4px 6px -4px rgb(0 0 0 / 0.06);
+    transform: translateY(-1px);
+  }
+
+  /* Selection states */
+  .card-selected {
+    background-color: var(--color-surface-elevated);
+    border-color: --alpha(var(--color-primary) / 0.2);
+    box-shadow:
+      0 0 0 1px --alpha(var(--color-primary) / 0.1),
+      0 4px 12px -2px --alpha(var(--color-primary) / 0.08);
+  }
+
+  /* Subtle dividers */
+  .divider-subtle {
+    border-color: var(--color-divider);
+  }
+
+  .border-subtle {
+    border-color: var(--color-border-subtle);
+  }
+
+  /* Surface layers */
+  .surface {
+    background-color: var(--color-surface);
+  }
+
+  .surface-elevated {
+    background-color: var(--color-surface-elevated);
+  }
+
+  .surface-hover:hover {
+    background-color: var(--color-surface-hover);
+  }
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* 基础颜色映射 - shadcn/ui 兼容 */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Chart 颜色映射 */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Sidebar 颜色映射 */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* 扩展颜色映射 */
+  --color-border-subtle: var(--border-subtle);
+  --color-divider: var(--divider);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-hover: var(--surface-hover);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+
+  /* Brand Color - Mapped to Emerald */
+  --color-brand: var(--color-emerald-600);
+  --color-brand-50: var(--color-emerald-50);
+  --color-brand-100: var(--color-emerald-100);
+  --color-brand-200: var(--color-emerald-200);
+  --color-brand-300: var(--color-emerald-300);
+  --color-brand-400: var(--color-emerald-400);
+  --color-brand-500: var(--color-emerald-500);
+  --color-brand-600: var(--color-emerald-600);
+  --color-brand-700: var(--color-emerald-700);
+  --color-brand-800: var(--color-emerald-800);
+  --color-brand-900: var(--color-emerald-900);
+  --color-brand-950: var(--color-emerald-950);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  /* 
+   * 统一的输入框组聚焦样式
+   * 用于解决双重边框问题并保持全站一致性
+   * 对应文档: docs/2_technical/ui-input-focus-standard.md
+   */
+  .input-group-focus {
+    @apply focus-within:ring-1 focus-within:ring-ring focus-within:ring-offset-0 focus-within:border-primary transition-colors;
+  }
+
+  .input-focus {
+    @apply focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 focus-visible:border-primary;
+  }
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+  border-radius: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--muted-foreground);
+}

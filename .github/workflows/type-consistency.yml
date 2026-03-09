@@ -1,0 +1,45 @@
+name: Type Consistency
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  typegen:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.12.4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Start Supabase local stack
+        run: supabase start
+
+      - name: Reset database (replay migrations)
+        run: pnpm db:reset
+
+      - name: Generate DB types from local (with AST transform)
+        run: pnpm db:types:local
+
+      - name: Check type consistency (database.ts up-to-date)
+        run: |
+          git diff --exit-code -- src/shared/types/database.ts || (
+            echo 'database.ts 不一致，请在本地运行 pnpm db:types:local 并提交最新文件' && exit 1
+          )
